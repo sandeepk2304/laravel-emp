@@ -16,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(
+            'App\Repositories\IEmployee',
+            'App\Repositories\EmployeeRepository'
+        );
 
     }
 
@@ -26,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        
     }
 }
