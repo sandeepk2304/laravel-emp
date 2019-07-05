@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-
+    <base href="/">
     <title>Employee Management System - {{ $pageTitle }}</title>
 
     <!-- Bootstrap core CSS -->
@@ -44,16 +44,25 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{route('employees.index')}}">List</a></li>
+                <li><a href="{{route('employees.create')}}">Add New</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-      @yield('content')
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="starter-template">
+            @yield('content')
+        </div>
     </div><!-- /.container -->
 
     <!-- Bootstrap core JavaScript

@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'EmployeeController@index');
+Route::resource('employees', 'EmployeeController');

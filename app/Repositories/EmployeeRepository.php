@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\models\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeRepository implements IEmployee
 {
@@ -46,5 +47,25 @@ class EmployeeRepository implements IEmployee
     public function update($id, array $data)
     {
         Employee::find($id)->update($data);
+    }
+
+    /**
+     * create a employee.
+     *
+     * @param int
+     * @param array
+     */
+    public function create(Request $request)
+    {
+        $model = new Employee();
+        $model->name = $request->name;
+        $model->department_id = 1;
+        $model->dob = date('Y-m-d');
+        $model->phone = 3232;
+        $model->photo = 'test';
+        $model->email =  $request->email;
+        $model->salary = 121212;
+        $model->status = 1;
+        $model->save();
     }
 }
