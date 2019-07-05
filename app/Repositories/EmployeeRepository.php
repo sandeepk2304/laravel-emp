@@ -66,6 +66,13 @@ class EmployeeRepository implements IEmployee
         $model->email =  $request->email;
         $model->salary = 121212;
         $model->status = 1;
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $model->photo = $image;
+        }
         $model->save();
     }
 }

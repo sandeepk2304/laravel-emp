@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateDepartmentTable extends Migration
 {
@@ -19,6 +20,16 @@ class CreateDepartmentTable extends Migration
             $table->tinyInteger('status');
             $table->timestamps();
         });
+        //insert data here
+        DB::table('department')->insert(
+                [
+                    'name' => 'Accounting',
+                    'name' => 'Research',
+                    'name' => 'Sales',
+                    'name' => 'Operations',
+                    'name' => 'Tech',
+                ]
+        );
     }
 
     /**
