@@ -61,6 +61,7 @@
 
     <div class="container">
         <div class="starter-template">
+            @include('flash')
             @yield('content')
         </div>
     </div><!-- /.container -->

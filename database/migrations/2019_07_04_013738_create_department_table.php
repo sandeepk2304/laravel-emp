@@ -21,13 +21,27 @@ class CreateDepartmentTable extends Migration
             $table->timestamps();
         });
         //insert data here
-        DB::table('department')->insert(
+        DB::table('department')->insert([
                 [
                     'name' => 'Accounting',
+                    'status'=>0
+                ],
+                [
                     'name' => 'Research',
+                    'status'=>1
+                ],
+                [
                     'name' => 'Sales',
+                    'status'=>0
+                ],
+                [
                     'name' => 'Operations',
+                    'status'=>1
+                ],
+                [
                     'name' => 'Tech',
+                    'status'=>1
+                ]
                 ]
         );
     }

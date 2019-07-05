@@ -33,9 +33,16 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        return view('employee.create')->with('pageTitle','Add Record');
+        $departments = $this->employeeService->getDepartments();
+        
+        return view('employee.create')->with(
+            [
+                'pageTitle'=>'Add Record',
+                'departments' => $departments
+            ]
+        );
     }
 
     /**
@@ -47,7 +54,7 @@ class EmployeeController extends Controller
     public function store(StoreEmployee $request)
     {
         $this->employeeService->create($request);
-        return redirect('/employees')->with('success', 'Record saved!');
+        return redirect('/employees')->with(['status'=>true,'msg'=>'Record saved!']);
     }
 
     /**

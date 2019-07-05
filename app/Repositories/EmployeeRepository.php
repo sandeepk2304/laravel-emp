@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\models\Employee;
 use Illuminate\Http\Request;
+use App\models\Department;
 
 class EmployeeRepository implements IEmployee
 {
@@ -71,8 +72,13 @@ class EmployeeRepository implements IEmployee
             $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
             $image->move($destinationPath, $name);
-            $model->photo = $image;
+            $model->photo = $name;
         }
         $model->save();
+    }
+
+    public function getDepartments()
+    {
+        return Department::active()->get()->toArray();
     }
 }

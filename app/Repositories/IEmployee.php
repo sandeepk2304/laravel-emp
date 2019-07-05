@@ -32,4 +32,9 @@ interface IEmployee
      * @param array
      */
     public function update(int $id, array $data);
+
+    /*
+     To get departments
+    */
+    public function getDepartments();
 }
