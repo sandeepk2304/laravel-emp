@@ -14,7 +14,7 @@ class EmployeeRepository implements IEmployee
      * @param integer $id
      * @return void
      */
-    public function get(int $id)
+    public function getById(int $id)
     {
         return Employee::find($id);
     }
@@ -24,9 +24,9 @@ class EmployeeRepository implements IEmployee
      *
      * @return void
      */
-    public function all()
+    public function all(int $limit=10)
     {
-        return Employee::all();
+        return Employee::findAll( $limit );
     }
 
     /**
@@ -45,9 +45,24 @@ class EmployeeRepository implements IEmployee
      * @param int
      * @param array
      */
-    public function update($id, array $data)
+    public function update(Request $request, int $id)
     {
-        Employee::find($id)->update($data);
+        $model = Employee::find($id);
+        $model->name = $request->name;
+        $model->department_id = $request->department_id;
+        $model->dob = date('Y-m-d');
+        $model->phone = $request->phone;
+        $model->email =  $request->email;
+        $model->salary = $request->salary;
+        $model->status = 1;
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $model->photo = $name;
+        }
+        $model->save();
     }
 
     /**
@@ -60,12 +75,11 @@ class EmployeeRepository implements IEmployee
     {
         $model = new Employee();
         $model->name = $request->name;
-        $model->department_id = 1;
+        $model->department_id = $request->department_id;
         $model->dob = date('Y-m-d');
-        $model->phone = 3232;
-        $model->photo = 'test';
+        $model->phone = $request->phone;
         $model->email =  $request->email;
-        $model->salary = 121212;
+        $model->salary = $request->salary;
         $model->status = 1;
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
@@ -79,6 +93,6 @@ class EmployeeRepository implements IEmployee
 
     public function getDepartments()
     {
-        return Department::active()->get()->toArray();
+        return Department::active()->get();
     }
 }

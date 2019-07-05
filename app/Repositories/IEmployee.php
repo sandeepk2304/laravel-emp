@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Illuminate\Http\Request;
+
 interface IEmployee
 {
     /**
@@ -9,14 +11,14 @@ interface IEmployee
      *
      * @param int
      */
-    public function get(int $id);
+    public function getById(int $id);
 
     /**
      * Get's all Data
      *
      * @return mixed
      */
-    public function all();
+    public function all(int $limit = 10);
 
     /**
      * Deletes a record.
@@ -31,7 +33,9 @@ interface IEmployee
      * @param int
      * @param array
      */
-    public function update(int $id, array $data);
+    public function update(Request $request, int $id);
+
+    public function create(Request $request);
 
     /*
      To get departments

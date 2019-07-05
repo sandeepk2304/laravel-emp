@@ -44,10 +44,17 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee<span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="{{route('employees.index')}}">List</a></li>
                 <li><a href="{{route('employees.create')}}">Add New</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Statics<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{route('employees.index',['report'=>1])}}">Department wise highest salary of employees.</a></li>
+                <li><a href="{{route('employees.index',['report'=>2])}}">List down employees who are not belongs to any department</a></li>
+                <li><a href="{{route('employees.index',['report'=>3])}}"> Find the name and age of the youngest employee in each department</a></li>
               </ul>
             </li>
           </ul>

@@ -20,11 +20,13 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $employees = $this->employeeService->all(5);
         return view('employee.index')->with([
-            'pageTitle'=>'List'
+            'pageTitle'=>'List',
+            'employees'=>$employees
         ]);
     }
 
@@ -35,12 +37,11 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $departments = $this->employeeService->getDepartments();
-        
         return view('employee.create')->with(
             [
                 'pageTitle'=>'Add Record',
-                'departments' => $departments
+                'employee'=>null,
+                'departments' => $this->employeeService->getDepartments()
             ]
         );
     }
@@ -77,6 +78,11 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         //
+        return view('employee.update')->with([
+            'pageTitle'=>'Edit',
+            'employee'=>$this->employeeService->getById($id),
+            'departments' => $this->employeeService->getDepartments()
+        ]);
     }
 
     /**
@@ -86,9 +92,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEmployee $request, $id)
     {
         //
+        $this->employeeService->update($request, $id);
+        return redirect('/employees')->with(['status'=>true,'msg'=>'Record updated!']);
     }
 
     /**
@@ -100,5 +108,7 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+        $this->employeeService->delete($id);
+        return redirect('/employees')->with(['status'=>true,'msg'=>'Record Deleted!']);
     }
 }
