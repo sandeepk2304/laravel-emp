@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Repositories\IEmployee;
+use App\Repositories\Interfaces\IEmployee;
 use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
@@ -20,13 +19,13 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
-        $employees = $this->employeeService->all(5);
+        $limit = 5;
         return view('employee.index')->with([
             'pageTitle'=>'List',
-            'employees'=>$employees
+            'employees'=>$this->employeeService->all($limit)
         ]);
     }
 

@@ -17,8 +17,13 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind(
-            'App\Repositories\IEmployee',
+            'App\Repositories\Interfaces\IEmployee',
             'App\Repositories\EmployeeRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Interfaces\IReport',
+            'App\Repositories\ReportRepository'
         );
 
     }

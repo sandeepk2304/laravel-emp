@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\models\Employee;
 use Illuminate\Http\Request;
 use App\models\Department;
+use App\Repositories\Interfaces\IEmployee;
 
 class EmployeeRepository implements IEmployee
 {

@@ -13,3 +13,4 @@
 
 Route::get('/', 'EmployeeController@index');
 Route::resource('employees', 'EmployeeController');
+Route::get('/report', 'ReportController@index')->name('report.index');

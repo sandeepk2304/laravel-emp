@@ -24,7 +24,7 @@ $statusArray = [
     <select class="form-control" name="department_id">
         <option value="">--Select--</option>
         @foreach ($departments as $department)
-            <option selected="{{  !empty( $employee->department_id ) && $employee->department_id == $department->id ? 'selected="selected"' : '' }}" value="{{ $department->id }}">{{ $department->name }}</option>
+            <option {{  !empty( $employee->department_id ) && $employee->department_id == $department->id ? 'selected="selected"' : '' }} value="{{ $department->id }}">{{ $department->name }}</option>
         @endforeach
     </select>
 </div>
@@ -43,10 +43,6 @@ $statusArray = [
 <div class="form-group">
     <label for="country">Salary:</label>
     <input type="text" class="form-control" name="salary" value="{{  !empty( $employee->salary ) ? $employee->salary : old('salary') }}"/>
-</div>
-<div class="form-group">
-        <label for="country">Phone:</label>
-        <input type="text" class="form-control" name="phone" value="{{  !empty( $employee->phone ) ? $employee->phone : old('phone') }}"/>
 </div>
 <div class="form-group">
         <label for="status">Status:</label>

@@ -26,6 +26,7 @@ class StoreEmployee extends FormRequest
         return [
             'name' => 'required|max:255',
             'email' => 'required|email',
+            'phone' => 'required',
         ];
     }
 }

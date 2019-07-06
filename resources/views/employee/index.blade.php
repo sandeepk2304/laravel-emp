@@ -8,19 +8,19 @@
                       <table class="table table-striped">
                         <thead>
                             <tr>
-                              <td>ID</td>
-                              <td>Name</td>
-                              <td>Email</td>
-                              <td>Department</td>
-                              <td>Dob</td>
-                              <td>phone</td>
-                              <td>salary</td>
-                              <td>status</td>
-                              <td colspan = 2>Actions</td>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Dob</th>
+                                <th>phone</th>
+                                <th>salary</th>
+                                <th>status</th>
+                                <th colspan = 2>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if (!empty($employees))
+                            @if ($employees->isNotEmpty())
                               @foreach($employees as $employe)
                               <tr>
                                   <td>{{$employe->id}}</td>
@@ -44,7 +44,7 @@
                               </tr>
                               @endforeach
                             @else
-                                <tr><td colspan="2">No Record Found</td></tr>
+                                <tr><td colspan="9">No Record Found</td></tr>
                             @endif
                             
                         </tbody>
