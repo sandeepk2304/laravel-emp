@@ -38,7 +38,7 @@ $statusArray = [
 </div>
 <div class="form-group">
     <label for="city">DOB:</label>
-    <input type="text" class="form-control" name="dob" value="{{  !empty( $employee->dob ) ? $employee->dob : old('dob') }}"/>
+    <input type="text" class="form-control dob" name="dob" value="{{  !empty( $employee->dob ) ? date('d-m-Y',strtotime($employee->dob)) : old('dob') }}"/>
 </div>
 <div class="form-group">
     <label for="country">Salary:</label>
@@ -54,4 +54,19 @@ $statusArray = [
             <option value="1" {{  $employee && $employee->status == 1 ? 'selected="selected"' : '' }}>Active</option>
             <option value="0" {{  $employee && $employee->status == 0 ? 'selected="selected"' : '' }}>InActive</option>
         </select>
-    </div>
+</div>
+@section('style')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endsection
+
+@section('script')
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $('.dob').datepicker({
+                dateFormat: 'dd-mm-yy'
+            });        
+        });
+    </script>    
+@endsection

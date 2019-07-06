@@ -48,51 +48,48 @@ class EmployeeRepository implements IEmployee
     public function update(Request $request, int $id)
     {
         $model = Employee::find($id);
-        $model->name = $request->name;
-        $model->department_id = $request->department_id;
-        $model->dob = date('Y-m-d');
-        $model->phone = $request->phone;
-        $model->email =  $request->email;
-        $model->salary = $request->salary;
-        $model->status = 1;
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-            $model->photo = $name;
-        }
-        $model->save();
+        $this->save($model,$request);
     }
 
     /**
-     * create a employee.
+     * To create new employee in system.
      *
-     * @param int
-     * @param array
+     * @param Request $request
+     * @return void
      */
     public function create(Request $request)
     {
         $model = new Employee();
-        $model->name = $request->name;
-        $model->department_id = $request->department_id;
-        $model->dob = date('Y-m-d');
-        $model->phone = $request->phone;
-        $model->email =  $request->email;
-        $model->salary = $request->salary;
-        $model->status = 1;
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-            $model->photo = $name;
-        }
-        $model->save();
+        $this->save($model,$request);
     }
 
     public function getDepartments()
     {
         return Department::active()->get();
+    }
+
+    /**
+     * To save employee record
+     *
+     * @param Employee $model
+     * @param Request $request
+     * @return void
+     */
+    private function save(Employee $model,  Request $request){
+        $model->name = $request->name;
+        $model->department_id = $request->department_id;
+        $model->dob = date('Y-m-d',strtotime($request->dob));
+        $model->phone = $request->phone;
+        $model->email =  $request->email;
+        $model->salary = $request->salary;
+        $model->status = $request->status;
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $model->photo = $name;
+        }
+        $model->save();
     }
 }
