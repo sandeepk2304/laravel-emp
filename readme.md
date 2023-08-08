@@ -1,6 +1,6 @@
 ## 1 Clone/Download Repository
 ```
-git clone https://github.com/codewithsandeep/laravel-emp.git
+git clone https://github.com/sandeepk2304/laravel-emp.git
 ```
 
 ## 2 Run composer update
