@@ -45,3 +45,12 @@ sudo service apache2 restart
 ```
 ## 9 open browser and hit local.laravelemp.com
 Enjoy!!
+
+
+## Further reading
+
+Longer write-ups on the same ground, from [hisandeep.com](https://www.hisandeep.com):
+
+- [Eloquent N+1 queries: find them, then fix them](https://www.hisandeep.com/blog/eloquent-n-plus-1-queries)
+- [Laravel caching with Redis, past the basics](https://www.hisandeep.com/blog/laravel-caching-with-redis)
+- [Laravel queues: retries, failures and what to watch](https://www.hisandeep.com/blog/laravel-queues-retries-and-failures)
